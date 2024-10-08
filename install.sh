@@ -293,7 +293,7 @@ CONTAINER_USER_ID=""
 CONTAINER_GROUP_ID=""
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Set user to docker run --user [userName]
-DOCKER_ADD_USER=""
+DOCKER_ADD_USER="daemon"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Set group to docker run --group-add [groupName]
 DOCKER_ADD_GROUP="docker"
@@ -626,7 +626,8 @@ __setup_cron() {
 # Set custom container enviroment variables - [MYVAR="VAR"]
 __custom_docker_env() {
   cat <<EOF | tee -p | grep -v '^$'
-
+CODER_HTTP_ADDRESS=0.0.0.0:80
+CODER_ACCESS_URL=$CONTAINER_HOSTNAME.$CONTAINER_DOMAINNAME
 EOF
 }
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

@@ -626,6 +626,7 @@ __setup_cron() {
 # Set custom container enviroment variables - [MYVAR="VAR"]
 __custom_docker_env() {
   cat <<EOF | tee -p | grep -v '^$'
+CODER_DATA=/data/coder 
 CODER_HTTP_ADDRESS=0.0.0.0:80
 CODER_ACCESS_URL=https://$CONTAINER_HOSTNAME.$CONTAINER_DOMAINNAME
 EOF

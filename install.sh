@@ -627,7 +627,7 @@ __setup_cron() {
 __custom_docker_env() {
   cat <<EOF | tee -p | grep -v '^$'
 CODER_HTTP_ADDRESS=0.0.0.0:80
-CODER_ACCESS_URL=$CONTAINER_HOSTNAME.$CONTAINER_DOMAINNAME
+CODER_ACCESS_URL=https://$CONTAINER_HOSTNAME.$CONTAINER_DOMAINNAME
 EOF
 }
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

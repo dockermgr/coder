@@ -19,17 +19,17 @@ dockermgr update coder
 ## Install and run container
   
 ```shell
-mkdir -p "$HOME/.local/share/srv/docker/coder/rootfs"
+mkdir -p "$HOME/.local/share/srv/docker/coder/volumes"
 git clone "https://github.com/dockermgr/coder" "$HOME/.local/share/CasjaysDev/dockermgr/coder"
-cp -Rfva "$HOME/.local/share/CasjaysDev/dockermgr/coder/rootfs/." "$HOME/.local/share/srv/docker/coder/rootfs/"
+cp -Rfva "$HOME/.local/share/CasjaysDev/dockermgr/coder/volumes/." "$HOME/.local/share/srv/docker/coder/volumes/"
 docker run -d \
 --restart always \
 --privileged \
 --name casjaysdevdocker-coder \
 --hostname coder \
 -e TZ=${TIMEZONE:-America/New_York} \
--v "$HOME/.local/share/srv/docker/casjaysdevdocker-coder/rootfs/data:/data:z" \
--v "$HOME/.local/share/srv/docker/casjaysdevdocker-coder/rootfs/config:/config:z" \
+-v "$HOME/.local/share/srv/docker/casjaysdevdocker-coder/volumes/data:/data:z" \
+-v "$HOME/.local/share/srv/docker/casjaysdevdocker-coder/volumes/config:/config:z" \
 -p 80:80 \
 casjaysdevdocker/coder:latest
 ```
@@ -46,8 +46,8 @@ services:
       - TZ=America/New_York
       - HOSTNAME=coder
     volumes:
-      - "$HOME/.local/share/srv/docker/casjaysdevdocker-coder/rootfs/data:/data:z"
-      - "$HOME/.local/share/srv/docker/casjaysdevdocker-coder/rootfs/config:/config:z"
+      - "$HOME/.local/share/srv/docker/casjaysdevdocker-coder/volumes/data:/data:z"
+      - "$HOME/.local/share/srv/docker/casjaysdevdocker-coder/volumes/config:/config:z"
     ports:
       - 80:80
     restart: always
